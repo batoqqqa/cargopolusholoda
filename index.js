@@ -11,7 +11,7 @@ const { requireAuth, requireAdmin } = require('./backend/middleware/auth');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '..')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use(session({
