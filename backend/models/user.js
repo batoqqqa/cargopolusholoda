@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const pool   = require('../db'); 
+const pool   = require('../../db'); 
 
 /**
  * @param {{ name: string, email: string, password: string }} userData
