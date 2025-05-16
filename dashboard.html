@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="auth.js"></script>
+  <script defer src="orders.js"></script>
+  <script defer src="create-order.js"></script>
+  <script defer src="script.js"></script>
+
+
+</head>
+<body id="top">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          requireAuth();
+          const currentUser = getCurrentUser();
+        });
+      </script>
+
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="create-order.html"><img src="img/logo.png" alt="Логотип"></a>
+      </div>
+      <nav class="nav dashboard-nav">
+        <a href="#tab-calc" class="tab-link active">Создание заказа</a>
+        <a href="#tab-orders" class="tab-link">Заказы</a>
+        <a href="#tab-rules"  class="tab-link">Правила</a>
+      </nav>
+      <button class="btn-login" onclick="logout()">Выйти</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="tab-orders" class="tab-content">
+      <h2>Мои заказы</h2>
+      <div class="orders-tabs">
+        <button data-status="created" class="order-tab active">Новые</button>
+        <button data-status="in_transit" class="order-tab">В пути</button>
+        <button data-status="delivered" class="order-tab">Полученные</button>
+        <button data-status="archived" class="order-tab">Архив</button>
+      </div>
+      <div id="orders-list"></div>
+    </section>
+
+<section id="tab-calc" class="tab-content" style="display:none">
+  <h2>Создать новый заказ</h2>
+  <form id="order-form">
+    <div class="calculator-box">
+      <div class="row">
+        <select id="fromSelect" required>
+          <option value="">Откуда</option>
+          <option>Якутск</option>
+          <option>Токума</option>
+          <option>Борулах</option>
+          <option>Батагай</option>
+          <option>Верхоянск</option>
+          <option>Боронук</option>
+          <option>Арылах</option>
+        </select>
+        <select id="toSelect" required>
+          <option value="">Куда</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button type="button" class="option-button size-btn" data-size="gabarit">Габаритный груз</button>
+        <button type="button" class="option-button size-btn" data-size="negabarit">Негабаритный груз</button>
+      </div>
+      <div class="button-group">
+        <button type="button" class="option-button section-btn" data-section="cold">Холодный отсек</button>
+        <button type="button" class="option-button section-btn" data-section="warm">Тёплый отсек</button>
+      </div>
+      <div class="row">
+        <input type="number" id="length" placeholder="Длина, см" min="0.01" max="1000" step="0.01" required>
+        <input type="number" id="width" placeholder="Ширина, см" min="0.01" max="1000" step="0.01" required>
+        <input type="number" id="height" placeholder="Высота, см" min="0.01" max="1000" step="0.01" required>
+        <input type="number" id="weight" placeholder="Вес, кг" min="0.01" step="0.01" required>
+      </div>
+      <hr>
+      <button type="button" id="calculate-btn" class="calculate-button">Посчитать</button>
+      <p class="calculated-result">Итоговая стоимость: <strong><span id="calculated-cost">—</span> ₽</strong></p>
+    </div>
+    <div class="order-details">
+      <label>
+        Описание груза:
+        <textarea id="description" rows="3" placeholder="Например: холодильник LG" required></textarea>
+      </label>
+      <label>
+        Количество:
+        <input type="number" id="quantity" min="1" value="1" required>
+      </label>
+      <label>
+        Имя получателя:
+        <input type="text" id="recipient-name" placeholder="ФИО получателя" required>
+      </label>
+      <label>
+        Телефон получателя:
+        <input type="tel" id="recipient-phone" placeholder="+7 (___) ___-__-__" required>
+      </label>
+      <label>
+        Адрес (улица, дом, кв.):
+        <input type="text" id="address" placeholder="Улица, дом, квартира" required>
+      </label>
+    </div>
+    <button id="create-order-btn" type="submit" class="btn-primary">Создать заказ</button>  
+  </form>
+</section>
+
+    <section id="tab-rules" class="tab-content" style="display:none">
+      <h2>Правила перевозки</h2>
+      <p>Чтобы перевозка прошла без проблем, мы работаем по четким правилам. Они касаются типов грузов, требований к упаковке и условий доставки. Перед отправкой рекомендуем ознакомиться с правилами в документе ниже.</p>
+      <p>• Скачать правила перевозки (PDF)</p>
+    </section>
+  </main>
+
+  <footer class="footer-light">
+    <div class="footer-container">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Контактная информация</h3>
+          <ul>
+            <li>📞 Телефоны: +7 924 165-75-75, +7 924 165-75-22</li>
+            <li>📧 Email: vvdrugin@mail.ru</li>
+            <li>📍 Республика Саха (Якутия), Верхоянский улус, с. Боронук, ул. Центральная, д.9, кв.3</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Реквизиты</h3>
+          <ul>
+            <li>ИП: Другин Вячеслав Вячеславович</li>
+            <li>ИНН: 14351318477</li>
+            <li>ОГРНИП: 307143515500090</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <template id="order-card-template">
+    <div class="order-card" data-id="">
+      <div class="order-summary">
+        <strong class="order-id">№</strong>
+        <div class="order-date"></div>
+        <div><span class="order-route"></span></div>
+        <div class="order-type"></div>
+        <div class="order-dims">Вес: <span class="order-weight"></span> кг, Габариты: <span class="order-lwh"></span> см</div>
+        <div>Стоимость: <span class="order-cost"></span> ₽</div>
+      </div>
+      
+      <div class="order-meta">
+        <span class="order-from"></span>
+        <span class="order-to"></span>
+      </div>
+
+      <div class="order-actions">
+        <button class="details-btn">Подробнее</button>
+        <button class="delete-btn">Удалить</button>
+        <button class="status-btn" style="display:none;">Изменить статус</button>
+      </div>
+      <div class="order-details">
+        <p><strong>Описание:</strong> <span class="order-desc"></span></p>
+        <p><strong>Количество:</strong> <span class="order-qty"></span></p>
+        <p><strong>Получатель:</strong> <span class="order-name"></span></p>
+        <p><strong>Телефон:</strong> <span class="order-phone"></span></p>
+        <p><strong>Адрес:</strong> <span class="order-address"></span></p>
+      </div>
+    </div>
+  </template>
+
+  <div id="orders-list"></div>
+
+  <script>
+
+    document.querySelectorAll('.tab-link').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('.tab-link').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(s => s.style.display = 'none');
+        a.classList.add('active');
+        document.querySelector(a.getAttribute('href')).style.display = 'block';
+      });
+    });
+
+    function logout() {
+      sessionStorage.removeItem('currentUser');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

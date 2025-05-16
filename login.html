@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>С возвращением</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="auth.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+<body class="login-page">
+
+  <div class="login-container">
+    <h2>С возвращением</h2>
+
+    <form id="login-form" class="login-form">
+      <label for="email">Логин</label>
+      <input type="text" id="email" name="email" placeholder="Введите email" required>
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+      <label id="captcha-question" for="captcha-answer">Сколько будет ?</label>
+      <input type="number" id="captcha-answer" name="captchaAnswer" placeholder="Ваш ответ"  required/>
+      <button type="submit">Войти</button>
+    </form>
+
+    <p class="login-register-link">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+  </div>
+</body>
+</html>

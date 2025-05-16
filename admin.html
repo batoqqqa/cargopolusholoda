@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Панель администратора</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="auth.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body id="top">
+  <header class="header">
+    <div class="container">
+      <div class="logo"><a href="dashboard.html"><img src="img/logo.png" alt="Логотип"></a></div>
+      <nav class="nav">
+        <a href="#tab-users" class="tab-link active">Пользователи</a>
+        <a href="#tab-orders-admin" class="tab-link">Заказы</a>
+      </nav>
+      <button class="btn-login" onclick="logout()">Выйти</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="tab-users" class="tab-content">
+      <h2>Все пользователи</h2>
+      <input type="text" id="user-filter" placeholder="Поиск по имени или email" style="width:100%; padding:8px; margin-bottom:10px;">
+      <table class="admin-table">
+        <thead>
+          <tr><th>ID</th><th>Имя</th><th>Email</th><th>Роль</th><th>Действия</th></tr>
+        </thead>
+        <tbody id="users-list"></tbody>
+      </table>
+    </section>
+
+    <section id="tab-orders-admin" class="tab-content" style="display:none">
+      <h2>Все заказы</h2>
+      <input type="text" id="order-filter" placeholder="Поиск по ID, имени или маршруту" style="width:100%; padding:8px; margin-bottom:10px;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Заказ ID</th>
+            <th>Пользователь</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Тип</th>
+            <th>Стоимость</th>
+            <th>Дата</th>
+            <th>Статус</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="orders-list-admin"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <div id="edit-user-modal" class="modal hidden">
+    <div class= "modal-content">
+        <form id="edit-user-form">
+          <input type="hidden" id="edit-user-id" name="id" />
+          <label for="edit-user-name">Имя</label>
+          <input
+            type="text"
+            id="edit-user-name"
+            name="name"
+            required
+            placeholder="Введите имя"/>
+
+          <label for="edit-user-email">Email</label>
+          <input
+            type="email"
+            id="edit-user-email"
+            name="email"
+            required
+            placeholder="Введите почту"
+          />
+
+          <label for="edit-user-role">Роль</label>
+          <select id="edit-user-role" name="role">
+            <option value="user">Пользователь</option>
+            <option value="admin">Администратор</option>
+          </select>
+
+          <button type="submit">Сохранить</button>
+          <button type="button" id="edit-user-cancel">Отмена</button>
+        </form>
+    </div>
+  </div>
+
+  <div id="edit-order-modal" class="modal hidden">
+  <div class="modal-content">
+    <form id="edit-order-form">
+      <h3>Редактировать заказ</h3>
+      <input type="hidden" id="edit-order-id" name="id" />
+
+      <label for="edit-order-from">Откуда</label>
+      <select id="edit-order-from" name="from" required>
+        <option value="">Выберите</option>
+        <option>Якутск</option>
+        <option>Токума</option>
+        <option>Борулах</option>
+        <option>Батагай</option>
+        <option>Верхоянск</option>
+        <option>Боронук</option>
+        <option>Арылах</option>
+      </select>
+
+      <label for="edit-order-to">Куда</label>
+      <select id="edit-order-to" name="to" required>
+        <option value="">Выберите</option>
+        <option>Якутск</option>
+        <option>Токума</option>
+        <option>Борулах</option>
+        <option>Батагай</option>
+        <option>Верхоянск</option>
+        <option>Боронук</option>
+        <option>Арылах</option>
+      </select>
+
+      <fieldset>
+        <legend>Размер</legend>
+        <label><input type="radio" name="size" value="gabarit"> Габарит</label>
+        <label><input type="radio" name="size" value="negabarit"> Негабарит</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Отсек</legend>
+        <label><input type="radio" name="section" value="cold"> Холодный</label>
+        <label><input type="radio" name="section" value="warm"> Тёплый</label>
+      </fieldset>
+
+      <label for="edit-order-length">Длина (см)</label>
+      <input type="number" id="edit-order-length" name="length" min="0"/>
+
+      <label for="edit-order-width">Ширина (см)</label>
+      <input type="number" id="edit-order-width" name="width" min="0"/>
+
+      <label for="edit-order-height">Высота (см)</label>
+      <input type="number" id="edit-order-height" name="height" min="0"/>
+
+      <label for="edit-order-weight">Вес (кг)</label>
+      <input type="number" id="edit-order-weight" name="weight" min="0"/>
+
+      <label for="edit-order-cost">Стоимость (₽)</label>
+      <input type="number" id="edit-order-cost" name="cost" min="0" step="0.01" required/>
+
+      <label for="edit-order-status">Статус</label>
+      <select id="edit-order-status" name="status" required>
+        <option value="created">Создано</option>
+        <option value="in_transit">В пути</option>
+        <option value="delivered">Получено</option>
+        <option value="archived">Архив</option>
+      </select>
+
+      <label for="edit-order-description">Описание</label>
+      <textarea id="edit-order-description" name="description" rows="3"></textarea>
+
+      <label for="edit-order-quantity">Кол-во</label>
+      <input type="number" id="edit-order-quantity" name="quantity" min="1"/>
+
+      <label for="edit-order-recipient-name">Получатель</label>
+      <input type="text" id="edit-order-recipient-name" name="recipientName"/>
+
+      <label for="edit-order-recipient-phone">Телефон получателя</label>
+      <input type="tel" id="edit-order-recipient-phone" name="recipientPhone"/>
+
+      <label for="edit-order-address">Адрес доставки</label>
+      <textarea id="edit-order-address" name="address" rows="2"></textarea>
+
+      <button type="submit">Сохранить</button>
+      <button type="button" id="edit-order-cancel">Отмена</button>
+    </form>
+  </div>
+</div>
+
+  <footer class="footer-light">
+  </footer>
+</body>
+</html>

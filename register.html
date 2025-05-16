@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Создание учетной записи</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="auth.js"></script>
+</head>
+
+<body class="login-page">
+
+  <div class="login-container">
+    <h2>Создание учетной записи</h2>
+
+    <form id="register-form" class="register-form">
+      <label for="name">ФИО</label>
+      <input type="text" id="name" name="name" placeholder="Введите ФИО" required>
+
+      <label for="email">Логин</label>
+      <input type="email" id="email" name="email" placeholder="Введите email" required>
+      
+
+
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+
+      <label for="confirm-password">Повторите пароль</label>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторите пароль" required>
+
+      <div id="password-error"> Пароль должен быть не короче 8 символов, содержать заглавную и строчную букву, а также цифру.</div>
+
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <p class="login-register-link">Уже есть аккаунт? <a href="login.html">Войти</a></p>
+  </div>
+
+</body>
+</html>

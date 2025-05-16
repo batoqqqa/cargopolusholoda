@@ -1,0 +1,24 @@
+{
+    "name": "cargo-backend",
+    "version": "1.0.0",
+    "description": "Backend для сайта «Карго Полюс Холода»",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "author": "Василий",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.0",
+        "express": "^4.18.2",
+        "express-session": "^1.18.1",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.14.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10"
+    }
+}
