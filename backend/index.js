@@ -32,7 +32,7 @@ app.use('/api/users',  requireAuth, requireAdmin, userRoutes);
 
 app.use('/api/orders', require('./routes/orders'));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
