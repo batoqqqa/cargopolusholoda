@@ -1033,6 +1033,46 @@ section[id] {
   margin-right: 10px;
 }
 
+/* Для планшетов */
+@media (max-width: 1024px) {
+  body, .container, .dashboard, .admin-panel {
+    width: 98%;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+  /* если есть сайдбары или лишние отступы — убери их тут */
+}
+
+/* Для мобильных телефонов */
+@media (max-width: 600px) {
+  body, .container, .dashboard, .admin-panel {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0.5rem !important;
+    font-size: 1rem !important;
+  }
+  .form, form {
+    width: 100% !important;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  input, select, button, textarea {
+    width: 100% !important;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+  nav, .nav, .header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem;
+  }
+  .order-card, .card {
+    width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+  }
+  /* Допиши под свои уникальные блоки */
+}
 
 
   
