@@ -95,32 +95,31 @@ body {
   }
 
   .main {
-    
     display: flex;
-    width: 100%;
-    margin: 0 auto
-    
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
   }
 
   .main-img img{
-    margin-top: 230px;
-    width: 90%;
-    height: 60%;
-    margin-left: 0px;
+    width: 300px;
+    height: auto;
+    display: block;
   }
 
   .main h1 {
-    margin: 200px 0 27px 340px;
+    margin: 0 0 16px 0;
     font-family: Inter-B;
     font-size: 53px;
     line-height: 125%;
+    text-align: left;
   }
   
   .main p {
+    font-family: Inter-L;
     font-size: 24px;
-    max-width: 700px;
-    margin-bottom: 54px;
-    margin-left: 340px;
     line-height: 140%;
   }
   
@@ -132,7 +131,7 @@ body {
     padding: 30px 90px;
     border-radius: 25px;
     text-decoration: none;
-    margin-left: 340px;
+    text-align: center;
   }
   
   .btn-primary:hover {
