@@ -98,9 +98,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
     margin-top: 40px;
     flex-wrap: wrap;
+    max-width: 1274px;
   }
 
   .main-img img{
