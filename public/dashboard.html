@@ -26,16 +26,16 @@
         <img src="img/logo.png" alt="Логотип"></a>
       </div>
       <nav class="nav dashboard-nav">
-        <a href="#tab-calc" class="tab-link active">Создание заказа</a>
-        <a href="#tab-orders" class="tab-link">Заказы</a>
-        <a href="#tab-rules"  class="tab-link">Правила</a>
+        <a href="#create-order-pane" class="dashboard-menu-item">Создание заказа</a>
+        <a href="#orders-pane" class="dashboard-menu-item active">Заказы</a>
+        <a href="#rules-pane" class="dashboard-menu-item">Правила</a>
       </nav>
       <button class="btn-login" onclick="logout()">Выйти</button>
     </div>
   </header>
 
   <main class="container">
-    <section id="tab-orders" class="tab-content">
+    <section id="orders-pane" class="dashboard-section">
       <h2>Мои заказы</h2>
       <div class="orders-tabs">
         <button data-status="created" class="order-tab active">Новые</button>
@@ -46,7 +46,7 @@
       <div id="orders-list"></div>
     </section>
 
-<section id="tab-calc" class="tab-content" style="display:none">
+<section id="create-order-pane" class="dashboard-section" style="display:none">
   <h2>Создать новый заказ</h2>
   <form id="order-form">
     <div class="calculator-box">
@@ -111,7 +111,7 @@
 </main>
 
   </section>
-    <section id="tab-rules" class="tab-content" style="display:none">
+    <section id="rules-pane" class="dashboard-section" style="display:none">
       <h2>Правила перевозки</h2>
       <p>Чтобы перевозка прошла без проблем, мы работаем по четким правилам. Они касаются типов грузов, требований к упаковке и условий доставки. Перед отправкой рекомендуем ознакомиться с правилами в документе ниже.</p>
       <p>• Скачать правила перевозки (PDF)</p>

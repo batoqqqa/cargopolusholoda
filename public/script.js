@@ -168,6 +168,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (firstTab) firstTab.click();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+
+  document.querySelectorAll('.dashboard-menu-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      document.querySelectorAll('.dashboard-menu-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+
+      document.querySelectorAll('.dashboard-section').forEach(sec => sec.style.display = 'none');
+
+      const paneId = this.getAttribute('href');
+      const pane = document.querySelector(paneId);
+      if (pane) pane.style.display = '';
+    });
+  });
+
+  const firstItem = document.querySelector('.dashboard-menu-item');
+  if (firstItem) firstItem.click();
+});
+
+
 function openLogin() {
   window.location.href = "login.html";
 }
