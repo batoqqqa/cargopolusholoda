@@ -63,7 +63,7 @@ router.post('/register', async (req, res) => {
     });
   } catch (err) {
     console.error('Registration error:', err);
-    res.status(500).json({ message: 'Ошибка регистрации', error: JSON.stringify(err)  });
+    res.status(500).json({ message: 'Ошибка регистрации', error: err.message, stack: err.stack });
   }
 });
 
