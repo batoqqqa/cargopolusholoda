@@ -692,7 +692,11 @@ section[id] {
   margin: 10px 0;
 }
 
-
+.tab-content h2 {
+  margin-top: 220px;
+  font-family: Inter-B;
+  font-size: 53px;
+}
 
 .dashboard-section h2 {
   margin-top: 220px;
@@ -880,6 +884,13 @@ section[id] {
 }
 
 .tab-content {
+  font-family: Inter-R;
+  font-size: 24px;
+  margin-bottom: 80px;
+  line-height: 144%;
+}
+
+.dashboard-section {
   font-family: Inter-R;
   font-size: 24px;
   margin-bottom: 80px;
