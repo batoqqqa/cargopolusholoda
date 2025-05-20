@@ -167,17 +167,6 @@
   <div id="orders-list"></div>
 
   <script>
-
-    document.querySelectorAll('.tab-link').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          target.style.display = 'block';
-        }
-      })
-    });
-
     function logout() {
       sessionStorage.removeItem('currentUser');
       window.location.href = 'login.html';

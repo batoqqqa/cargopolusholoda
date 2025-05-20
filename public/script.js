@@ -148,29 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const authBtn = document.getElementById('authBtn');
-  const accessToken = localStorage.getItem('accessToken');
-
-  if (accessToken) {
-
-    authBtn.textContent = "Выйти из сервиса";
-    authBtn.href = "#";
-    authBtn.onclick = function(e) {
-      e.preventDefault();
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      sessionStorage.removeItem('currentUser');
-      window.location.href = 'index.html'; 
-    };
-  } else {
-
-    authBtn.textContent = "Войти в сервис";
-    authBtn.href = "login.html";
-    authBtn.onclick = null;
-  }
-});
-
 function openLogin() {
   window.location.href = "login.html";
 }
