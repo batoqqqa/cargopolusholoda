@@ -1,4 +1,4 @@
-const acessToken = localStorage.getItem('accessToken');
+const accessToken = localStorage.getItem('accessToken');
 
     function requireAdmin() {
       const user = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
