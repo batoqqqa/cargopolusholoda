@@ -1,7 +1,7 @@
 const jwt     = require('jsonwebtoken');
 const User    = require('../models/user');
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || (JWT_SECRET + '_refresh');
 
 async function requireAuth(req, res, next) {
   try {

@@ -40,9 +40,14 @@ router.post('/register', async (req, res) => {
 
     const newUser = await createUser({ name, email, password });
 
-    const token = jwt.sign(
-      { id: newUser.id, role: newUser.role },
+    const accessToken = jwt.sign(
+      { id: user.id, role: user.role },
       JWT_SECRET,
+      { expiresIn: '15m' }
+    );
+    const refreshToken = jwt.sign(
+      { id: user.id, role: user.role },
+      JWT_REFRESH_SECRET,
       { expiresIn: '7d' }
     );
 
@@ -91,9 +96,14 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Неверные данные' });
     }
 
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       { id: user.id, role: user.role },
       JWT_SECRET,
+      { expiresIn: '15m' }
+    );
+    const refreshToken = jwt.sign(
+      { id: user.id, role: user.role },
+      JWT_REFRESH_SECRET,
       { expiresIn: '7d' }
     );
 
