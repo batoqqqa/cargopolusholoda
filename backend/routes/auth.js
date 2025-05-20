@@ -7,6 +7,7 @@ const {createUser, findUserByEmail } = require('../models/user');
 const session = require('express-session');
 const router = express.Router();
 const JWT_SECRET   = process.env.JWT_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || (JWT_SECRET + '_refresh');
 const SALT_ROUNDS  = parseInt(process.env.SALT_ROUNDS, 10) || 10;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
