@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const cost = parseFloat(costOutput.textContent);
+    const cost = parseFloat(costOutput.textContent.replace(/\s/g, '').replace(',', '.'));
+
+
     if (isNaN(cost)) {
       alert('Сначала рассчитайте стоимость!');
       return;
