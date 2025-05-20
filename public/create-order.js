@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
   orderForm.addEventListener('submit', async e => {
     e.preventDefault();
 
-    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-    if (!token) {
+    const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+    if (!accessToken) {
       alert('Пожалуйста, войдите в систему!');
       window.location.href = 'login.html';
       return;

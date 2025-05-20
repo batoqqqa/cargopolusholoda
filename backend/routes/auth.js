@@ -124,4 +124,23 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/refresh', async (req, res) => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    return res.status(401).json({ message: 'Не передан refreshToken' });
+  }
+  try {
+    const user = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+    
+    const accessToken = jwt.sign(
+      { id: user.id, role: user.role },
+      JWT_SECRET,
+      { expiresIn: '15m' }
+    );
+    res.json({ accessToken });
+  } catch (err) {
+    return res.status(403).json({ message: 'refreshToken невалиден' });
+  }
+});
+
 module.exports = router;

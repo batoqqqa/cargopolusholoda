@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   requireAuth();
   const user = getCurrentUser();
-  const token = localStorage.getItem('token');
-  if (!token) {
+  const accessToken = localStorage.getItem('accessToken');
+  if (!accessToken) {
 
     window.location.href = 'login.html';
     return;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `/api/orders`
         : `/api/orders/mine`;
       const res = await fetch(url, {
-        headers: { 'Authorization': 'Bearer ' + token }
+        headers: { 'Authorization': 'Bearer ' + accessToken }
       });
       if (!res.ok) throw new Error('Ошибка ' + res.status);
       allOrders = await res.json();
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const res = await fetch(`/api/orders/${id}`, {
             method: 'DELETE',
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + accessToken }
           });
           if (!res.ok) throw new Error('Ошибка ' + res.status);
           await fetchOrders();
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
+              'Authorization': 'Bearer ' + accessToken
             },
             body: JSON.stringify({ status: newStatus })
           });

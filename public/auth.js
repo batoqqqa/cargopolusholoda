@@ -1,5 +1,6 @@
-function setSession(user, token) {
-  localStorage.setItem('token', token);
+function setSession(user, accessToken, refreshToken) {
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
   sessionStorage.setItem('currentUser', JSON.stringify(user));
 }
 
@@ -8,8 +9,8 @@ function getCurrentUser() {
 }
 
 function requireAuth() {
-  const token = localStorage.getItem('token');
-  if (!token) {
+  const accessToken = localStorage.getItem('accessToken');
+  if (!accessToken) {
     window.location.href = 'login.html';
   }
 }
@@ -17,7 +18,8 @@ window.requireAuth = requireAuth;
 
 
 function logout() {
-  localStorage.removeItem('token');
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
   sessionStorage.removeItem('currentUser');
   window.location.href = 'login.html';
 }
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
           }
 
-          setSession(data.user, data.token);
+          setSession(data.user, data.accessToken, data.refreshToken);
 
           if (data.user.role === 'admin') 
           {
@@ -140,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error(data.error || data.message || res.statusText);
         }
 
-        setSession(data.user, data.token);
+        setSession(data.user, data.accessToken, data.refreshToken);
         alert('Успешно! Вы зарегистрированы, сейчас вы будете переадресованы на страницу авторизации.');
         window.location.href = 'login.html';
       } catch (err) {

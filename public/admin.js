@@ -1,4 +1,4 @@
-const token = localStorage.getItem('token');
+const acessToken = localStorage.getItem('accessToken');
 
     function requireAdmin() {
       const user = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
@@ -60,7 +60,7 @@ const token = localStorage.getItem('token');
             const orderId = btn.dataset.id;
 
             const resp = await fetch(`/api/orders/${orderId}`, {
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + accessToken }
             });
             const order = await resp.json();
 
@@ -115,7 +115,7 @@ const token = localStorage.getItem('token');
             method:  'PUT',
             headers: {
                 'Content-Type':  'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + accessToken
             },
             body: JSON.stringify(body)
             });
@@ -170,7 +170,7 @@ const token = localStorage.getItem('token');
             console.log('Редактировать пользователя', userId);
 
             const resp = await fetch(`/api/users/${userId}`, {
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + accessToken }
             });
             const  user  = await resp.json();
             idInput.value    = user.id;
@@ -198,7 +198,7 @@ const token = localStorage.getItem('token');
             method:  'PUT',
             headers: {
                 'Content-Type':  'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + accessToken
             },
             body: JSON.stringify(body)
             });
@@ -215,7 +215,7 @@ const token = localStorage.getItem('token');
             const id = btn.dataset.id;
             await fetch(`/api/users/${id}`, {
             method: 'DELETE',
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + accessToken }
             });
             loadUsers();
         });
@@ -271,7 +271,7 @@ const token = localStorage.getItem('token');
           sel.addEventListener('change', async () => {
             await fetch(`/api/orders/${sel.dataset.id}/status`, {
               method:'PATCH',
-              headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+              headers:{'Content-Type':'application/json','Authorization':'Bearer '+ accessToken},
               body: JSON.stringify({status: sel.value})
             });
           });
@@ -280,7 +280,7 @@ const token = localStorage.getItem('token');
         ordersTbody.querySelectorAll('.delete-order').forEach(btn => {
           btn.addEventListener('click', async () => {
             if (!confirm('Удалить заказ?')) return;
-            await fetch(`/api/orders/${btn.dataset.id}`, {method:'DELETE',headers:{'Authorization':'Bearer '+token}});
+            await fetch(`/api/orders/${btn.dataset.id}`, {method:'DELETE',headers:{'Authorization':'Bearer '+ accessToken}});
             loadAdminOrders();
           });
         });
@@ -289,7 +289,7 @@ const token = localStorage.getItem('token');
 
       async function loadAdminOrders() {
         try {
-          const res = await fetch('/api/orders', { headers:{'Authorization':'Bearer '+token} });
+          const res = await fetch('/api/orders', { headers:{'Authorization':'Bearer '+ accessToken} });
           ordersData = await res.json();
           renderOrders(ordersData);
         } catch (err) {
@@ -300,7 +300,7 @@ const token = localStorage.getItem('token');
 
       async function loadUsers() {
         try {
-            const res = await fetch('/api/users', { headers: { 'Authorization': 'Bearer ' + token } });
+            const res = await fetch('/api/users', { headers: { 'Authorization': 'Bearer ' + accessToken } });
             if (!res.ok) throw new Error('Ошибка ' + res.status);
             usersData = await res.json();
             renderUsers(usersData);
@@ -325,6 +325,8 @@ const token = localStorage.getItem('token');
 
 
     function logout() {
-      localStorage.removeItem('token'); sessionStorage.removeItem('currentUser');
+      localStorage.removeItem('accessToken'); 
+      localStorage.removeItem('refreshToken');
+      sessionStorage.removeItem('currentUser');
       window.location.href='login.html';
     }
