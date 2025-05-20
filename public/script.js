@@ -103,7 +103,11 @@ if (calculateBtn && costOutput) {
       cost = weight * rate;
     }
 
-    costOutput.textContent = cost.toFixed(2);
+    costOutput.textContent = cost.toLocaleString('ru-RU', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).replace(',', '.');
+
   });
 }
 
