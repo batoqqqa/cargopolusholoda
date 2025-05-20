@@ -159,6 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const order = await res.json();
       alert(`Заказ №${order.id} создан успешно!`);
 
+      orderForm.reset();
+
       if (typeof render === 'function') render('created');
 
       document.querySelector('.order-tab[data-status="created"]').click();
