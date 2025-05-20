@@ -694,29 +694,29 @@ section[id] {
 
 
 
-.tab-content h2 {
+.dashboard-section h2 {
   margin-top: 220px;
   font-family: Inter-B;
   font-size: 53px;
 }
 
-#tab-calc {
+#create-order-pane {
   margin-bottom: 80px;
 }
 
-#tab-calc .calculator-box {
+#create-order-pane .calculator-box {
   position: relative;
   z-index: 1;
 }
 
-#tab-calc .button-group {
+#create-order-pane .button-group {
   display: flex;       
   flex-wrap: wrap;     
   gap: 15px;             
   margin-bottom: 20px;
 }
 
-#tab-calc .option-button {
+#create-order-pane .option-button {
   background-color: white;
   color: #00983F;
   border: 2px solid #00983F;
@@ -729,17 +729,17 @@ section[id] {
   display: inline-block;
 }
 
-#tab-calc .option-button.active {
+#create-order-pane .option-button.active {
   background-color: #00983F;
   color: white;
 }
 
 
-#tab-calc .calculate-button {
+#create-order-pane .calculate-button {
   margin-top: 20px;
 }
 
-#tab-calc .btn-primary {
+#create-order-pane .btn-primary {
   font-family: Inter-L;
   display: block;
   background-color: #00983F;
