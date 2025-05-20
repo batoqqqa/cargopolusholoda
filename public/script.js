@@ -148,6 +148,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+
+    document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+
+    const targetId = this.getAttribute('href');
+    const targetPane = document.querySelector(targetId);
+    if (targetPane) targetPane.style.display = '';
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const firstTab = document.querySelector('.tab');
+  if (firstTab) firstTab.click();
+});
+
 function openLogin() {
   window.location.href = "login.html";
 }
