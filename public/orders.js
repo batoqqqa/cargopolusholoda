@@ -59,7 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         : `Габарит, ${o.section==='cold'?'холодный':'тёплый'}`;
       clone.querySelector('.order-weight').textContent = o.weight;
       clone.querySelector('.order-lwh').textContent   = `${o.length}×${o.width}×${o.height}`;
-      clone.querySelector('.order-cost').textContent = parseFloat(o.cost).toFixed(2);
+      clone.querySelector('.order-cost').textContent = parseFloat(o.cost).toLocaleString('ru-RU', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).replace(',', '.');
 
       clone.querySelector('.order-desc').textContent    = o.description;
       clone.querySelector('.order-qty').textContent     = o.quantity;
