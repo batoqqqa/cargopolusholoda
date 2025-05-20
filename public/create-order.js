@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(`Заказ №${order.id} создан успешно!`);
 
       orderForm.reset();
+      costOutput.textContent = '—';
 
       if (typeof render === 'function') render('created');
 
