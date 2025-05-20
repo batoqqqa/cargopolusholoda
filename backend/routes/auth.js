@@ -41,12 +41,12 @@ router.post('/register', async (req, res) => {
     const newUser = await createUser({ name, email, password });
 
     const accessToken = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: newUser.id, role: newUser.role },
       JWT_SECRET,
       { expiresIn: '15m' }
     );
     const refreshToken = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: newUser.id, role: newUser.role },
       JWT_REFRESH_SECRET,
       { expiresIn: '7d' }
     );
@@ -58,7 +58,8 @@ router.post('/register', async (req, res) => {
         email: newUser.email,
         role:  newUser.role
       },
-      token
+      accessToken,
+      refreshToken
     });
   } catch (err) {
     console.error('Registration error:', err);
@@ -114,7 +115,8 @@ router.post('/login', async (req, res) => {
         email: user.email,
         role:  user.role
       },
-      token, 
+      accessToken, 
+      refreshToken,
       success:true
     });
 
@@ -131,7 +133,7 @@ router.post('/refresh', async (req, res) => {
   }
   try {
     const user = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
-    
+
     const accessToken = jwt.sign(
       { id: user.id, role: user.role },
       JWT_SECRET,
