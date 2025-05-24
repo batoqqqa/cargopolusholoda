@@ -7,6 +7,7 @@ const path = require('path');
 const authRoutes  = require('./backend/routes/auth');
 const userRoutes  = require('./backend/routes/users');
 const orderRoutes = require('./backend/routes/orders');
+const reportRoutes = require('./routes/report');
 const { requireAuth, requireAdmin } = require('./backend/middleware/auth');
 
 const app = express();
@@ -31,6 +32,8 @@ app.use('/api/orders', requireAuth, orderRoutes);
 app.use('/api/users',  requireAuth, requireAdmin, userRoutes);
 
 app.use('/api/orders', require('./backend/routes/orders'));
+
+app.use('/api', reportRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -189,6 +189,69 @@ document.addEventListener('DOMContentLoaded', function() {
   if (firstItem) firstItem.click();
 });
 
+document.getElementById('report-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const startDate = document.getElementById('start-date').value;
+  const endDate = document.getElementById('end-date').value;
+  const resp = await fetch(`/api/orders-report?startDate=${startDate}&endDate=${endDate}`);
+  const data = await resp.json();
+  showReportTable(data);
+});
+
+function showReportTable(data) {
+  if (!data.length) {
+    document.getElementById('report-table').innerHTML = '<p>Нет данных за выбранный период</p>';
+    return;
+  }
+  let table = `<table border="1"><tr>
+    <th>ID</th>
+    <th>Откуда</th>
+    <th>Куда</th>
+    <th>Категория</th>
+    <th>Секция</th>
+    <th>Дата создания</th>
+    <th>Размеры (Д×Ш×В, см)</th>
+    <th>Вес, кг</th>
+    <th>Объем, м³</th>
+    <th>Ценность</th>
+    <th>Стоимость</th>
+    <th>Описание</th>
+    <th>Количество</th>
+    <th>Получатель</th>
+    <th>Телефон</th>
+    <th>Адрес</th>
+    <th>Статус</th>
+    <th>Пользователь</th>
+    <th>Email</th>
+    <th>Роль</th>
+    </tr>`;
+  data.forEach(r => {
+    table += `<tr>
+      <td>${r.id}</td>
+      <td>${r.from_location}</td>
+      <td>${r.to_location}</td>
+      <td>${r.size_category}</td>
+      <td>${r.section_type}</td>
+      <td>${r.created_at}</td>
+      <td>${r.length_cm}×${r.width_cm}×${r.height_cm}</td>
+      <td>${r.weight_kg}</td>
+      <td>${r.volume_m3}</td>
+      <td>${r.value}</td>
+      <td>${r.cost}</td>
+      <td>${r.description || ''}</td>
+      <td>${r.quantity}</td>
+      <td>${r.recipient_name}</td>
+      <td>${r.recipient_phone}</td>
+      <td>${r.address}</td>
+      <td>${r.status}</td>
+      <td>${r.user_name}</td>
+      <td>${r.user_email}</td>
+      <td>${r.user_role}</td>
+    </tr>`;
+  });
+  table += '</table>';
+  document.getElementById('report-table').innerHTML = table;
+}
 
 function openLogin() {
   window.location.href = "login.html";
