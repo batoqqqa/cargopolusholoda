@@ -7,7 +7,7 @@ const path = require('path');
 const authRoutes  = require('./backend/routes/auth');
 const userRoutes  = require('./backend/routes/users');
 const orderRoutes = require('./backend/routes/orders');
-const reportRoutes = require('./routes/report');
+const reportRoutes = require('./backend/routes/report');
 const { requireAuth, requireAdmin } = require('./backend/middleware/auth');
 
 const app = express();
