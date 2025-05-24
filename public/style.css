@@ -1074,6 +1074,77 @@ section[id] {
   text-align: left;
 }
 
+.report-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 30px;
+  background: #f9f9f9;
+  padding: 14px 14px 2px 14px;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+}
+.checkbox-group legend {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 0;
+  position: relative;
+}
+.checkbox-group input[type="checkbox"] {
+  accent-color: #3578e5;
+  width: 18px;
+  height: 18px;
+}
+
+.date-range {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-range label {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.date-range input[type="date"] {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  font-size: 15px;
+}
+.btn-report, .btn-excel {
+  padding: 7px 16px;
+  margin-left: 8px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #3578e5;
+  color: #fff;
+  transition: background 0.15s;
+}
+.btn-excel {
+  background: #28a745;
+}
+.btn-report:hover { background: #285db4; }
+.btn-excel:hover { background: #238c39; }
+
 /* Для планшетов */
 @media (max-width: 1024px) {
   body, .container, .dashboard, .admin-panel {

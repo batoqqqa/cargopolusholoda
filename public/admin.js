@@ -366,10 +366,12 @@ const accessToken = localStorage.getItem('accessToken');
     let table = `<table><tr>${checked.map(col => `<th>${REPORT_LABELS[col]}</th>`).join('')}</tr>`;
     data.forEach(row => {
     table += `<tr>${checked.map(col => `<td>${row[col] ?? ''}</td>`).join('')}</tr>`;
-  });
+    });
     table += '</table>';
     document.getElementById('report-table').innerHTML = table;
   }
+
+  window.lastReportData = [];
 
   document.getElementById('report-flags').addEventListener('change', function() {
     if (window.lastReportData) showReportTable(window.lastReportData);
@@ -385,6 +387,24 @@ const accessToken = localStorage.getItem('accessToken');
     showReportTable(data);
   });
   
+  document.getElementById('export-excel').addEventListener('click', function() {
+    if (!window.lastReportData.length) {
+      alert('Сначала получите отчет!');
+      return;
+    }
+    const checked = Array.from(document.querySelectorAll('#report-flags input[type=checkbox]:checked')).map(cb => cb.value);
+
+    const sheetData = [
+      checked.map(col => REPORT_LABELS[col]), 
+      ...window.lastReportData.map(row => checked.map(col => row[col] ?? ''))
+    ];
+
+    const ws = XLSX.utils.aoa_to_sheet(sheetData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Отчет");
+    XLSX.writeFile(wb, `report_${new Date().toISOString().slice(0,10)}.xlsx`);
+  });
+
   function logout() {
     localStorage.removeItem('accessToken'); 
     localStorage.removeItem('refreshToken');

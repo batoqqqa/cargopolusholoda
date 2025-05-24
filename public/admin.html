@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <script defer src="auth.js"></script>
   <script defer src="admin.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
 </head>
 <body id="top">
   <header class="header">
@@ -55,38 +57,49 @@
     </section>
 
     <section id="tab-report" class="tab-content" style="display:none">
-    <h2>Отчёт по грузоперевозкам</h2>
+      <h2>Отчёт по грузоперевозкам</h2>
+      <form id="report-flags" class="report-controls">
+        <fieldset class="checkbox-group">
+          <legend>Выберите столбцы:</legend>
+          <label><input type="checkbox" name="col" value="id" checked> ID</label>
+          <label><input type="checkbox" name="col" value="from_location" checked> Откуда</label>
+          <label><input type="checkbox" name="col" value="to_location" checked> Куда</label>
+          <label><input type="checkbox" name="col" value="size_category" checked> Категория</label>
+          <label><input type="checkbox" name="col" value="section_type" checked> Секция</label>
+          <label><input type="checkbox" name="col" value="created_at" checked> Дата создания</label>
+          <label><input type="checkbox" name="col" value="length" checked> Длина (см)</label>
+          <label><input type="checkbox" name="col" value="width" checked> Ширина (см)</label>
+          <label><input type="checkbox" name="col" value="height" checked> Высота (см)</label>
+          <label><input type="checkbox" name="col" value="weight" checked> Вес (кг)</label>
+          <label><input type="checkbox" name="col" value="cost" checked> Стоимость</label>
+          <label><input type="checkbox" name="col" value="description" checked> Описание</label>
+          <label><input type="checkbox" name="col" value="quantity" checked> Кол-во</label>
+          <label><input type="checkbox" name="col" value="recipient_name" checked> Получатель</label>
+          <label><input type="checkbox" name="col" value="recipient_phone" checked> Телефон</label>
+          <label><input type="checkbox" name="col" value="address" checked> Адрес</label>
+          <label><input type="checkbox" name="col" value="status" checked> Статус</label>
+          <label><input type="checkbox" name="col" value="user_name" checked> Пользователь</label>
+          <label><input type="checkbox" name="col" value="user_email" checked> Email</label>
+          <label><input type="checkbox" name="col" value="user_role" checked> Роль</label>
+        </fieldset>
+        <div class="date-range">
+          <label>
+            С:
+            <input type="date" id="start-date" required>
+          </label>
+          <label>
+            По:
+            <input type="date" id="end-date" required>
+          </label>
+          <button type="submit" class="btn-report">Сформировать</button>
+          <button type="button" id="export-excel" class="btn-excel" title="Экспорт в Excel">
+            <span style="vertical-align:middle">&#128190;</span> В Excel
+          </button>
+        </div>
+      </form>
+      <div id="report-table"></div>
+    </section>
 
-    <form id="report-flags" style="margin-bottom:10px; display:flex; flex-wrap:wrap; gap:12px;">
-      <label><input type="checkbox" name="col" value="id" checked> ID</label>
-      <label><input type="checkbox" name="col" value="from_location" checked> Откуда</label>
-      <label><input type="checkbox" name="col" value="to_location" checked> Куда</label>
-      <label><input type="checkbox" name="col" value="size_category" checked> Категория</label>
-      <label><input type="checkbox" name="col" value="section_type" checked> Секция</label>
-      <label><input type="checkbox" name="col" value="created_at" checked> Дата создания</label>
-      <label><input type="checkbox" name="col" value="length" checked> Длина (см)</label>
-      <label><input type="checkbox" name="col" value="width" checked> Ширина (см)</label>
-      <label><input type="checkbox" name="col" value="height" checked> Высота (см)</label>
-      <label><input type="checkbox" name="col" value="weight" checked> Вес (кг)</label>
-      <label><input type="checkbox" name="col" value="cost" checked> Стоимость</label>
-      <label><input type="checkbox" name="col" value="description" checked> Описание</label>
-      <label><input type="checkbox" name="col" value="quantity" checked> Кол-во</label>
-      <label><input type="checkbox" name="col" value="recipient_name" checked> Получатель</label>
-      <label><input type="checkbox" name="col" value="recipient_phone" checked> Телефон</label>
-      <label><input type="checkbox" name="col" value="address" checked> Адрес</label>
-      <label><input type="checkbox" name="col" value="status" checked> Статус</label>
-      <label><input type="checkbox" name="col" value="user_name" checked> Пользователь</label>
-      <label><input type="checkbox" name="col" value="user_email" checked> Email</label>
-      <label><input type="checkbox" name="col" value="user_role" checked> Роль</label>
-    </form>
-
-    <form id="report-form">
-      <input type="date" id="start-date" required>
-      <input type="date" id="end-date" required>
-      <button type="submit">Сформировать</button>
-    </form>
-    <div id="report-table"></div>
-  </section>
 
   </main>
 
