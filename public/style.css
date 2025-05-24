@@ -1059,6 +1059,21 @@ section[id] {
   margin-right: 10px;
 }
 
+#report-table {
+  max-width: 1274px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+#report-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#report-table th, #report-table td {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
 /* Для планшетов */
 @media (max-width: 1024px) {
   body, .container, .dashboard, .admin-panel {
