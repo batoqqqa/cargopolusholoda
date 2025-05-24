@@ -15,7 +15,7 @@
       <nav class="nav">
         <a href="#tab-users" class="tab-link active">Пользователи</a>
         <a href="#tab-orders-admin" class="tab-link">Заказы</a>
-        <a href = "#report-form" class = "tab-link">Отчет</a>
+        <a href = "#tab-report" class = "tab-link">Отчет</a>
       </nav>
       <button class="btn-login" onclick="logout()">Выйти</button>
     </div>
@@ -173,15 +173,15 @@
     </form>
   </div>
 
-  <div>
-    <h3>Отчёт по грузоперевозкам</h3>
-    <section id="report-form">
+  <section id="tab-report" class="tab-content" style="display:none">
+    <h2>Отчёт по грузоперевозкам</h2>
+    <form id="report-form">
       <input type="date" id="start-date" required>
       <input type="date" id="end-date" required>
       <button type="submit">Сформировать</button>
-    </section>
+    </form>
     <div id="report-table"></div>
-  </div>
+  </section>
 
 </div>
 
