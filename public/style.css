@@ -706,13 +706,15 @@ section[id] {
 
 #rules-pane.dashboard-section h2{
   margin-top: 180px;
-  margin-left: 340px;
+  max-width: 1274px;
+  text-align: center;
   font-family: Inter-B;
   font-size: 53px;
 }
 
 #rules-pane.dashboard-section p{
-  margin-left: 340px;
+  max-width: 1274px;
+  text-align: center;
   margin-top: 40px;
 }
 
