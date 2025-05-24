@@ -44,22 +44,29 @@ body {
   .header {
     background-color: white;
     color: #3B3636;
-    padding: 25px;
+    padding: 18px;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     z-index: 1000;  
+    left: 0;
   }
   
   .header .container {
     display: flex;
     align-items: center; 
-    
+    justify-content: space-between;
+    min-height: 50px;
+    max-width: 1274px;
+    margin: 0 auto;
+    padding: 0 12px;
   }
   
   .nav {
-    margin-left: 135px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
   }
 
   .nav a {
@@ -68,6 +75,8 @@ body {
     text-decoration: none;
     margin-left: 35px;
     font-size: 20px;
+    padding:6px 12px;
+    transition: color .2s;
   }
   
   .nav .btn-login{
@@ -90,12 +99,43 @@ body {
     background-color: #00A1E5; color: white;
   }
 
+  @media (max-width: 600px) {
+    .header {
+        padding: 10px 0;
+    }
+    .header .container {
+        flex-direction: column;
+        gap: 8px;
+        min-height: unset;
+        padding: 0 2vw;
+    }
+    .logo img {
+        height: 32px;
+    }
+    .nav {
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+    }
+    .btn-login {
+        font-size: 15px;
+        padding: 6px 10px;
+        margin-left: 0;
+    }
+  }
+
   .main {
     
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    margin: 0 auto
-    
+    min-height: 75vh;
+    margin: 0 auto;
+    max-width: 1274px;
+    gap:24px;
+    padding: 56px 20px 0 20px;
   }
 
   .main-img img{
@@ -693,7 +733,7 @@ section[id] {
 }
 
 .tab-content h2 {
-  margin-top: 220px;
+  margin-top: 180px;
   font-family: Inter-B;
   font-size: 53px;
 }
@@ -702,6 +742,17 @@ section[id] {
   margin-top: 220px;
   font-family: Inter-B;
   font-size: 53px;
+}
+
+#rules-pane.dashboard-section h2{
+  margin-top: 180px;
+  margin-left:240px;
+  font-family: Inter-B;
+  font-size: 53px;
+}
+
+#rules-pane.dashboard-section p{
+  margin-top: 180px;
 }
 
 #create-order-pane {
