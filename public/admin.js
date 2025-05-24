@@ -346,6 +346,8 @@ const accessToken = localStorage.getItem('accessToken');
     user_role: "Роль"
   };
 
+  window.lastReportData = [];
+
   document.getElementById('report-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const startDate = document.getElementById('start-date').value;
