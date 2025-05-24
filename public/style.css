@@ -700,19 +700,19 @@ section[id] {
 
 .dashboard-section h2 {
   margin-top: 220px;
-  margin-left: 240px;
   font-family: Inter-B;
   font-size: 53px;
 }
 
 #rules-pane.dashboard-section h2{
   margin-top: 180px;
+  margin-left: 340px;
   font-family: Inter-B;
   font-size: 53px;
 }
 
 #rules-pane.dashboard-section p{
-  margin-left: 240px;
+  margin-left: 340px;
   margin-top: 40px;
 }
 
