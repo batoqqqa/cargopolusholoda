@@ -53,6 +53,17 @@
         <tbody id="orders-list-admin"></tbody>
       </table>
     </section>
+
+    <section id="tab-report" class="tab-content" style="display:none">
+    <h2>Отчёт по грузоперевозкам</h2>
+    <form id="report-form">
+      <input type="date" id="start-date" required>
+      <input type="date" id="end-date" required>
+      <button type="submit">Сформировать</button>
+    </form>
+    <div id="report-table"></div>
+  </section>
+
   </main>
 
   <div id="edit-user-modal" class="modal hidden">
@@ -172,17 +183,6 @@
       <button type="button" id="edit-order-cancel">Отмена</button>
     </form>
   </div>
-
-  <section id="tab-report" class="tab-content" style="display:none">
-    <h2>Отчёт по грузоперевозкам</h2>
-    <form id="report-form">
-      <input type="date" id="start-date" required>
-      <input type="date" id="end-date" required>
-      <button type="submit">Сформировать</button>
-    </form>
-    <div id="report-table"></div>
-  </section>
-
 </div>
 
   <footer class="footer-light">
