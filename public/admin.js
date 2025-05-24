@@ -347,7 +347,6 @@ const accessToken = localStorage.getItem('accessToken');
       <th>Размеры (Д×Ш×В, см)</th>
       <th>Вес, кг</th>
       <th>Объем, м³</th>
-      <th>Ценность</th>
       <th>Стоимость</th>
       <th>Описание</th>
       <th>Количество</th>
@@ -370,7 +369,6 @@ const accessToken = localStorage.getItem('accessToken');
         <td>${r.length_cm}×${r.width_cm}×${r.height_cm}</td>
         <td>${r.weight_kg}</td>
         <td>${r.volume_m3}</td>
-        <td>${r.value}</td>
         <td>${r.cost}</td>
         <td>${r.description || ''}</td>
         <td>${r.quantity}</td>

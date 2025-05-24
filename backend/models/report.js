@@ -14,7 +14,6 @@ async function getOrdersReport({ startDate, endDate }) {
       o.height_cm,
       o.weight_kg,
       o.volume_m3,
-      o.value,
       o.cost,
       o.description,
       o.quantity,
