@@ -346,7 +346,7 @@ const accessToken = localStorage.getItem('accessToken');
     user_role: "Роль"
   };
 
-  window.lastReportData = [];
+  
 
   document.getElementById('report-form').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -359,7 +359,7 @@ const accessToken = localStorage.getItem('accessToken');
 
   function showReportTable(data) {
 
-    const checked = Array.from(document.querySelectorAll('#report-flags input[type=checkbox]:checked')).map(cb => cb.value);
+    const checked = Array.from(document.querySelectorAll('#report-form input[type=checkbox]:checked')).map(cb => cb.value);
 
     if (!data.length) {
       document.getElementById('report-table').innerHTML = '<p>Нет данных за выбранный период</p>';
@@ -373,9 +373,10 @@ const accessToken = localStorage.getItem('accessToken');
     document.getElementById('report-table').innerHTML = table;
   }
 
-  document.getElementById('checkbox-group').addEventListener('change', function() {
+  document.querySelector('.checkbox-group').addEventListener('change', function() {
     if (window.lastReportData) showReportTable(window.lastReportData);
   });
+
 
   document.getElementById('report-form').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -392,7 +393,7 @@ const accessToken = localStorage.getItem('accessToken');
       alert('Сначала получите отчет!');
       return;
     }
-    const checked = Array.from(document.querySelectorAll('#report-flags input[type=checkbox]:checked')).map(cb => cb.value);
+    const checked = Array.from(document.querySelectorAll('#report-form input[type=checkbox]:checked')).map(cb => cb.value);
 
     const sheetData = [
       checked.map(col => REPORT_LABELS[col]), 
