@@ -371,8 +371,6 @@ const accessToken = localStorage.getItem('accessToken');
     document.getElementById('report-table').innerHTML = table;
   }
 
-  window.lastReportData = [];
-
   document.getElementById('report-flags').addEventListener('change', function() {
     if (window.lastReportData) showReportTable(window.lastReportData);
   });
