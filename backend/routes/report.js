@@ -11,9 +11,10 @@ router.get('/orders-report', async (req, res) => {
     const report = await getOrdersReport({ startDate, endDate });
     res.json(report);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Ошибка генерации отчёта.' });
+    console.error('ERROR in /orders-report:', err); // <-- вот это
+    res.status(500).json({ error: 'Ошибка генерации отчёта.', details: err.message });
   }
 });
+
 
 module.exports = router;
